@@ -1,0 +1,417 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8fafc;
+    height: 100vh;
+    overflow: hidden;
+    color: #1a202c;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    background: #ffffff;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
+}
+
+.controls-panel {
+    width: 350px;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    padding: 30px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.controls-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+}
+
+.controls-panel h1 {
+    color: #1a202c;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.75em;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.parameter-group {
+    margin-bottom: 25px;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.parameter-group:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.parameter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.875em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.parameter-group input,
+.parameter-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.parameter-group input:focus,
+.parameter-group select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    background: #ffffff;
+}
+
+.parameter-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.parameter-group h3 {
+    color: #374151;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.scale-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.scale-inputs div {
+    display: flex;
+    flex-direction: column;
+}
+
+.scale-inputs label {
+    font-size: 0.75em;
+    margin-bottom: 6px;
+    color: #6b7280;
+}
+
+.scale-inputs input {
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.layered-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.layered-controls div {
+    display: flex;
+    flex-direction: column;
+}
+
+.layered-controls label {
+    font-size: 0.85em;
+    margin-bottom: 6px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.layered-controls input {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.layered-controls input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.layered-gear-controls {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px solid #0ea5e9;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.layered-gear-controls h3 {
+    color: #0c4a6e;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.button-group button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-group button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.button-group button:active {
+    transform: translateY(0);
+}
+
+#generateBtn {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+}
+
+#generateBtn:hover {
+    background: linear-gradient(135deg, #4338ca, #6d28d9);
+}
+
+#resetBtn {
+    background: #f59e0b;
+    color: white;
+}
+
+#resetBtn:hover {
+    background: #d97706;
+}
+
+#exportBtn {
+    background: #10b981;
+    color: white;
+}
+
+#exportBtn:hover {
+    background: #059669;
+}
+
+.info-panel {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #bae6fd;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+}
+
+.info-panel h3 {
+    color: #0c4a6e;
+    margin-bottom: 15px;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.info-panel p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #0e7490;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-panel span {
+    font-weight: 700;
+    color: #0c4a6e;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.viewer-panel {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+}
+
+#three-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.viewer-controls {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+}
+
+.control-hint {
+    background: rgba(30, 41, 59, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* Scrollbar styling */
+.controls-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.controls-panel::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.controls-panel::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.controls-panel::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Input number styling */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .controls-panel {
+        width: 100%;
+        height: 45%;
+        order: 2;
+        padding: 20px;
+    }
+    
+    .viewer-panel {
+        height: 55%;
+        order: 1;
+    }
+    
+    .scale-inputs {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .parameter-group {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    
+    .controls-panel h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Focus styles for accessibility */
+button:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Modern glassmorphism effects */
+.parameter-group {
+    backdrop-filter: blur(10px);
+}
+
+.info-panel {
+    backdrop-filter: blur(10px);
+}

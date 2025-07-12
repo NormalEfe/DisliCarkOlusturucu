@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Dişli Çark Üreticisi</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="controls-panel">
+            <h1>3D Dişli Çark Üreticisi</h1>
+            
+            <div class="parameter-group">
+                <label for="gearType">Dişli Türü:</label>
+                <select id="gearType">
+                    <option value="spur">Düz Dişli (Spur Gear)</option>
+                    <option value="helical">Helisel Dişli (Helical Gear)</option>
+                    <option value="bevel">Konik Dişli (Bevel Gear)</option>
+                    <option value="crown">Katlı Dişli (Layered Gear)</option>
+                    <option value="internal">İç Dişli (Internal Gear)</option>
+                </select>
+            </div>
+            
+            <div class="parameter-group">
+                <label for="toothCount">Diş Sayısı:</label>
+                <input type="number" id="toothCount" min="8" max="100" value="24">
+            </div>
+            
+            <div class="parameter-group">
+                <label for="outerDiameter">Dış Çap (mm):</label>
+                <input type="number" id="outerDiameter" min="10" max="200" value="25.58" step="0.01">
+            </div>
+            
+            <div class="parameter-group">
+                <label for="innerHoleDiameter">İç Çap / Mil Deliği (mm):</label>
+                <input type="number" id="innerHoleDiameter" min="2" max="50" value="5">
+            </div>
+            
+            <div class="parameter-group">
+                <label for="width">Genişlik / Kalınlık (mm):</label>
+                <input type="number" id="width" min="1" max="50" value="8">
+            </div>
+            
+            <div class="parameter-group layered-gear-controls" style="display: none;">
+                <h3>Üst Dişli Ayarları:</h3>
+                <div class="layered-controls">
+                    <div>
+                        <label for="topToothCount">Üst Diş Sayısı:</label>
+                        <input type="number" id="topToothCount" min="8" max="100" value="12">
+                    </div>
+                    <div>
+                        <label for="topDiameter">Üst Dış Çap (mm):</label>
+                        <input type="number" id="topDiameter" min="10" max="200" value="13.33" step="0.01">
+                    </div>
+                    <div>
+                        <label for="topWidth">Üst Kalınlık (mm):</label>
+                        <input type="number" id="topWidth" min="1" max="25" value="3">
+                    </div>
+                    <div>
+                        <label for="topOffset">Üst Dişli Pozisyonu (%):</label>
+                        <input type="number" id="topOffset" min="10" max="100" value="100">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="parameter-group">
+                <h3>Ölçek:</h3>
+                <div class="scale-inputs">
+                    <div>
+                        <label for="scaleX">X:</label>
+                        <input type="number" id="scaleX" min="0.1" max="3" step="0.1" value="1">
+                    </div>
+                    <div>
+                        <label for="scaleY">Y:</label>
+                        <input type="number" id="scaleY" min="0.1" max="3" step="0.1" value="1">
+                    </div>
+                    <div>
+                        <label for="scaleZ">Z:</label>
+                        <input type="number" id="scaleZ" min="0.1" max="3" step="0.1" value="1">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button id="generateBtn">Dişli Oluştur</button>
+                <button id="resetBtn">Sıfırla</button>
+                <button id="exportBtn">STL İndir</button>
+            </div>
+            
+            <div class="info-panel">
+                <h3>Hesaplanan Değerler:</h3>
+                <div id="calculatedValues">
+                    <p>Modül: <span id="module">-</span></p>
+                    <p>Diş Derinliği: <span id="toothDepth">-</span></p>
+                    <p>Pitch Çapı: <span id="pitchDiameter">-</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="viewer-panel">
+            <div id="three-container"></div>
+            <div class="viewer-controls">
+                <div class="control-hint">
+                    🖱️ Sol tık: Döndür | 🎯 Orta tık: Kaydır | ⚙️ Tekerlek: Yakınlaştır
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
